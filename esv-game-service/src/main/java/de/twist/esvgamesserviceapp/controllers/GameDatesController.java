@@ -1,5 +1,7 @@
 package de.twist.esvgamesserviceapp.controllers;
 
+import java.io.File;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,8 +22,9 @@ public class GameDatesController {
 	@GetMapping(value="/data")
 	public String getFileTest() {
 		IcsFileHelper  icsHelper = new IcsFileHelper();
+		File icsFile= icsHelper.getIcsCalendarFile();
 		
-		return icsHelper.getIcsCalendarFile().getName().equals("") ? 
-				"getFileTest(): noFileFound" : "getFileTest(): " + icsHelper.getIcsCalendarFile().getName();
+		return icsFile.getName().equals("") ? 
+				"getFileTest(): noFileFound" : "getFileTest(): " + icsFile.getName();
 	}
 }
