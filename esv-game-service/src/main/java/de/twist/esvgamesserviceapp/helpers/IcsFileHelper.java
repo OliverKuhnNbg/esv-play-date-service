@@ -6,13 +6,15 @@ import java.io.IOException;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import de.twist.esvgamesserviceapp.constants.Filepath;
+
 public class IcsFileHelper {
 
 	public IcsFileHelper() {
 	}
 
-	public File getIcsCalendarFile() {
-		Resource resource = new ClassPathResource("Spielplan_ALT-GS_22-01-2024_bis_28-04-2024.ics");
+	public static File getIcsCalendarFile() {
+		Resource resource = new ClassPathResource(Filepath.STATIC.value + Filepath.GAME_SHEDULES.value + Filepath.H1_FILENAME.value);
 		File file = new File("");
 
 		try {

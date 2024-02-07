@@ -21,8 +21,7 @@ public class GameDatesController {
 	
 	@GetMapping(value="/data")
 	public String getFileTest() {
-		IcsFileHelper  icsHelper = new IcsFileHelper();
-		File icsFile= icsHelper.getIcsCalendarFile();
+		File icsFile= IcsFileHelper.getIcsCalendarFile();
 		
 		return icsFile.getName().equals("") ? 
 				"getFileTest(): noFileFound" : "getFileTest(): " + icsFile.getName();
