@@ -1,10 +1,10 @@
-package de.twist.esvgameservice;
+package de.olivertwist.esvgamesservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EsvGameServiceApplicationTests {
+class EsvPlayDateServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

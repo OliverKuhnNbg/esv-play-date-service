@@ -1,13 +1,13 @@
-package de.twist.esvgameservice;
+package de.twist.esvgamesservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EsvGameServiceApplication {
+public class EsvPlayDateServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EsvGameServiceApplication.class, args);
+		SpringApplication.run(EsvPlayDateServiceApplication.class, args);
 	}
 
 }

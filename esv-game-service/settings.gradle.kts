@@ -1,1 +1,1 @@
-rootProject.name = "esv-game-service"
+rootProject.name = "esv-games-service"
