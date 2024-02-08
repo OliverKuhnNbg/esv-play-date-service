@@ -31,12 +31,8 @@ public class IcsDataReadout {
 		boolean newEventSwitch = false;
 
 		for (int i = 0; (currentLine = bufferedReader.readLine()) != null; i++) {
-			if(currentLine.equals("BEGIN:VEVENT")) {
-				newEventSwitch=true;
-				System.out.println("***********************************************\n");
-			} else if(currentLine.equals("END:VEVENT")){
-				newEventSwitch=false;
-			}
+			
+			newEventSwitch = checkForNewEvent(newEventSwitch, currentLine);
 			
 			if (newEventSwitch && !currentLine.equals("BEGIN:VEVENT")) {
 				//TODO: read out data datamapping to objects
@@ -45,6 +41,17 @@ public class IcsDataReadout {
 		}
 
 		return currentLine;
+	}
+	
+	/** checks if current file line related to new event*/
+	private static boolean checkForNewEvent(boolean eventSwitch, String currentLine) {
+		if(currentLine.equals("BEGIN:VEVENT")) {
+			eventSwitch=true;
+			System.out.println("***********************************************\n");
+		} else if(currentLine.equals("END:VEVENT")){
+			eventSwitch=false;
+		}
+		return eventSwitch;
 	}
 
 }
