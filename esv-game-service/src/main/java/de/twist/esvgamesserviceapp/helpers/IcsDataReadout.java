@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import de.twist.esvgamesserviceapp.constants.IcsDefinitions;
 import de.twist.esvgamesserviceapp.helpers.datamapping.DataStringHelper;
@@ -34,18 +36,25 @@ public class IcsDataReadout {
 		String currentLine = "";
 		boolean newEventSwitch = false;
 		CalendarGameEvent calGameEvent = new CalendarGameEvent();
+		List<CalendarGameEvent> allEventsList = new ArrayList<>();
 
 		for (int i = 0; (currentLine = bufferedReader.readLine()) != null; i++) {
 			newEventSwitch = checkForNewEvent(newEventSwitch, currentLine);
 
 			if (currentLine.equals(IcsDefinitions.BEGIN_VEVENT.value)) {
 				calGameEvent= new CalendarGameEvent();
+			} 
+			else if (newEventSwitch && !currentLine.equals(IcsDefinitions.BEGIN_VEVENT.value)) {
+				calGameEvent = DataStringHelper.mapIcsFileData(calGameEvent, currentLine);
+			} 
+			else if (currentLine.equals(IcsDefinitions.END_VEVENT.value)) {
+				allEventsList.add(calGameEvent);
 			}
-			
-			if (newEventSwitch && !currentLine.equals(IcsDefinitions.BEGIN_VEVENT.value)) {
-				//TODO: read out data datamapping to objects
-				DataStringHelper.mapIcsFileData(calGameEvent, currentLine);
-			}
+		}
+
+//		TODO: return EventList fulleventList presentation - test output of list objects
+		for (CalendarGameEvent calendarGameEvent : allEventsList) {
+			DataStringHelper.objectDataOutput(calendarGameEvent);
 		}
 
 		return currentLine;
@@ -53,11 +62,9 @@ public class IcsDataReadout {
 
 	/** checks if current file line related to new event*/
 	private static boolean checkForNewEvent(boolean eventSwitch, String currentLine) {
-
-		if(currentLine.equals("BEGIN:VEVENT")) {
+		if(currentLine.equals(IcsDefinitions.BEGIN_VEVENT.value)) {
 			eventSwitch=true;
-			System.out.println("***********************************************\n");
-		} else if(currentLine.equals("END:VEVENT")){
+		} else if(currentLine.equals(IcsDefinitions.END_VEVENT.value)){
 			eventSwitch=false;
 		}
 

@@ -19,32 +19,46 @@ public class DataStringHelper {
 		Date date;
 
 		if(icsDefinition.equals(IcsDefinitions.DTSTAMP.value)) {
-			System.out.println(StringDateHelper.getDateFromString(icsDefinitionData));
 			date = StringDateHelper.getDateFromString(icsDefinitionData);
 			calGameEvent.setLastDataUpdate(date);
 		} else if(icsDefinition.equals(IcsDefinitions.DTSTART.value)) {
-			System.out.println(StringDateHelper.getDateFromString(icsDefinitionData));
 			date = StringDateHelper.getDateFromString(icsDefinitionData);
 			calGameEvent.setStartGameDate(date);
 		} else if(icsDefinition.equals(IcsDefinitions.DTEND.value)) {
-			System.out.println(StringDateHelper.getDateFromString(icsDefinitionData));
 			date = StringDateHelper.getDateFromString(icsDefinitionData);
 			calGameEvent.setEndGameDate(date);
 		} else if(icsDefinition.equals(IcsDefinitions.SUMMARY.value)) {
 			List<String> teamsList= StringFormatHelper.getHomeAndGuestTeamList(icsDefinitionData);
-			System.out.println(teamsList.getFirst() + " - " + teamsList.getLast());
 			calGameEvent.setHomeTeam(teamsList.getFirst());
 			calGameEvent.setGuestTeam(teamsList.getLast());
 		} else if(icsDefinition.equals(IcsDefinitions.LOCATION.value)) {
 			List<String> locationDataList = StringFormatHelper.getLocationDataList(icsDefinitionData);
-			System.out.println(locationDataList.getFirst() + " - " + locationDataList.get(1) + " - " + locationDataList.getLast());
 			Location location = new Location();
 			location.setStreet(locationDataList.getFirst());
 			location.setZipCode(locationDataList.get(1));
 			location.setCity(locationDataList.getLast());
 
 			calGameEvent.setLocation(location);
+		} else if(icsDefinition.equals(IcsDefinitions.UID.value)) {
+			List<String> locationDataList = StringFormatHelper.getLocationDataList(icsDefinitionData);
+			calGameEvent.setGameId(Long.parseLong(icsDefinitionData));
 		}
+
 		return calGameEvent;
+	}
+	
+	public static void objectDataOutput(CalendarGameEvent calGameEvent) {
+		System.out.println("\n----------------------------------------------------");
+		System.out.println(calGameEvent.getGameId());
+		System.out.println("lastUpdate: - " + calGameEvent.getLastDataUpdate());
+		System.out.println(" gameStart: - " + calGameEvent.getStartGameDate());
+		System.out.println("   gameEnd: - " + calGameEvent.getEndGameDate() + "\n");
+		System.out.println(" Home: " + calGameEvent.getHomeTeam() + "\nGuest: " + calGameEvent.getGuestTeam());
+		System.out.println("\nLocation:");
+		Location loc = calGameEvent.getLocation();
+		System.out.println(" street - " + calGameEvent.getGuestTeam());
+		System.out.println("    zip - " + loc.getZipCode());
+		System.out.println("   city - " + loc.getCity());
+		System.out.println("----------------------------------------------------\n");
 	}
 }
