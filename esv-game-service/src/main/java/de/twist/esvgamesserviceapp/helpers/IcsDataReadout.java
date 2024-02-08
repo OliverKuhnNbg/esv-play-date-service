@@ -25,7 +25,7 @@ public class IcsDataReadout {
 		
 		return "oli";
 	}
-	
+
 	private static String getReadoutDataFromFile(BufferedReader bufferedReader) throws IOException {
 		String currentLine = "";
 		boolean newEventSwitch = false;
@@ -45,13 +45,14 @@ public class IcsDataReadout {
 	
 	/** checks if current file line related to new event*/
 	private static boolean checkForNewEvent(boolean eventSwitch, String currentLine) {
+
 		if(currentLine.equals("BEGIN:VEVENT")) {
 			eventSwitch=true;
 			System.out.println("***********************************************\n");
 		} else if(currentLine.equals("END:VEVENT")){
 			eventSwitch=false;
 		}
+
 		return eventSwitch;
 	}
-
 }
