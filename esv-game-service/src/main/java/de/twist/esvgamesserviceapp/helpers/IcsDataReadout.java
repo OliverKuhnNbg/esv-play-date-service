@@ -36,7 +36,7 @@ public class IcsDataReadout {
 		String currentLine = "";
 		boolean newEventSwitch = false;
 		CalendarGameEvent calGameEvent = new CalendarGameEvent();
-		List<CalendarGameEvent> allEventsList = new ArrayList<>();
+		List<CalendarGameEvent> allCalendarEventsList = new ArrayList<>();
 
 		for (int i = 0; (currentLine = bufferedReader.readLine()) != null; i++) {
 			newEventSwitch = checkForNewEvent(newEventSwitch, currentLine);
@@ -48,12 +48,12 @@ public class IcsDataReadout {
 				calGameEvent = DataStringHelper.mapIcsFileData(calGameEvent, currentLine);
 			} 
 			else if (currentLine.equals(IcsDefinitions.END_VEVENT.value)) {
-				allEventsList.add(calGameEvent);
+				allCalendarEventsList.add(calGameEvent);
 			}
 		}
 
 //		TODO: return EventList fulleventList presentation - test output of list objects
-		for (CalendarGameEvent calendarGameEvent : allEventsList) {
+		for (CalendarGameEvent calendarGameEvent : allCalendarEventsList) {
 			DataStringHelper.objectDataOutput(calendarGameEvent);
 		}
 
