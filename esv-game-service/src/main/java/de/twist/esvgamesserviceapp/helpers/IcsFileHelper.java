@@ -29,7 +29,6 @@ public class IcsFileHelper {
 	
 	/** .ics-File - parse data*/
 	public static String parseCalendarDataToList(File file) {
-		
 		return IcsDataReadout.getMappedIcsData(file);
 	}
 }

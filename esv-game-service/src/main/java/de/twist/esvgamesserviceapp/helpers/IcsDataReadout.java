@@ -6,6 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import de.twist.esvgamesserviceapp.constants.IcsDefinitions;
+import de.twist.esvgamesserviceapp.helpers.datamapping.DataStringHelper;
+import de.twist.esvgamesserviceapp.models.CalendarGameEvent;
+
 public class IcsDataReadout {
 	
 	public static String getMappedIcsData(File file) {
@@ -29,20 +33,24 @@ public class IcsDataReadout {
 	private static String getReadoutDataFromFile(BufferedReader bufferedReader) throws IOException {
 		String currentLine = "";
 		boolean newEventSwitch = false;
+		CalendarGameEvent calGameEvent = new CalendarGameEvent();
 
 		for (int i = 0; (currentLine = bufferedReader.readLine()) != null; i++) {
-			
 			newEventSwitch = checkForNewEvent(newEventSwitch, currentLine);
+
+			if (currentLine.equals(IcsDefinitions.BEGIN_VEVENT.value)) {
+				calGameEvent= new CalendarGameEvent();
+			}
 			
-			if (newEventSwitch && !currentLine.equals("BEGIN:VEVENT")) {
+			if (newEventSwitch && !currentLine.equals(IcsDefinitions.BEGIN_VEVENT.value)) {
 				//TODO: read out data datamapping to objects
-				System.out.println(currentLine);
+				DataStringHelper.mapIcsFileData(calGameEvent, currentLine);
 			}
 		}
 
 		return currentLine;
 	}
-	
+
 	/** checks if current file line related to new event*/
 	private static boolean checkForNewEvent(boolean eventSwitch, String currentLine) {
 

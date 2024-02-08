@@ -8,7 +8,7 @@ public class CalendarGameEvent {
 
 	private long gameId;
 	
-	private Date generalGameDate;
+	private Date lastDataUpdate;
 	private Date startGameDate;
 	private Date endGameDate;
 	private boolean checkForGameAlreadyPlayed;
@@ -18,16 +18,12 @@ public class CalendarGameEvent {
 	
 	private Location location;
 
-	/** Constructors */
-	public CalendarGameEvent() {
-	}
-
 	/** Getters */
 	public long getGameId() {
 		return gameId;
 	}
-	public Date getGeneralGameDate() {
-		return generalGameDate;
+	public Date getLastDataUpdate() {
+		return lastDataUpdate;
 	}
 	public Date getStartGameDate() {
 		return startGameDate;
@@ -52,8 +48,8 @@ public class CalendarGameEvent {
 	public void setGameId(long gameId) {
 		this.gameId = gameId;
 	}
-	public void setGeneralGameDate(Date generalGameDate) {
-		this.generalGameDate = generalGameDate;
+	public void setLastDataUpdate(Date lastDataUpdate) {
+		this.lastDataUpdate = lastDataUpdate;
 	}
 	public void setStartGameDate(Date startGameDate) {
 		this.startGameDate = startGameDate;
@@ -73,4 +69,7 @@ public class CalendarGameEvent {
 	public void setLocation(Location location) {
 		this.location = location;
 	}
+
+	
+	
 }

@@ -9,5 +9,4 @@ public class EsvGamesServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EsvGamesServiceApplication.class, args);
 	}
-
 }
