@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class IcsDataMapping {
+public class IcsDataReadout {
 	
 	public static String getMappedIcsData(File file) {
 		FileReader fileReader;
@@ -28,11 +28,9 @@ public class IcsDataMapping {
 	
 	private static String getReadoutDataFromFile(BufferedReader bufferedReader) throws IOException {
 		String currentLine = "";
-
 		boolean newEventSwitch = false;
+
 		for (int i = 0; (currentLine = bufferedReader.readLine()) != null; i++) {
-			
-			
 			if(currentLine.equals("BEGIN:VEVENT")) {
 				newEventSwitch=true;
 				System.out.println("***********************************************\n");
@@ -44,7 +42,6 @@ public class IcsDataMapping {
 				//TODO: read out data datamapping to objects
 				System.out.println(currentLine);
 			}
-			
 		}
 
 		return currentLine;

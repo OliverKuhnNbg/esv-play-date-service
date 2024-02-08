@@ -30,6 +30,6 @@ public class IcsFileHelper {
 	/** .ics-File - parse data*/
 	public static String parseCalendarDataToList(File file) {
 		
-		return IcsDataMapping.getMappedIcsData(file);
+		return IcsDataReadout.getMappedIcsData(file);
 	}
 }
