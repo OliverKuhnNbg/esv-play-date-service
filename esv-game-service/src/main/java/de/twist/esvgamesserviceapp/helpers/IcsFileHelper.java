@@ -13,6 +13,7 @@ public class IcsFileHelper {
 	public IcsFileHelper() {
 	}
 
+	/** get .ics-File */
 	public static File getIcsCalendarFile() {
 		Resource resource = new ClassPathResource(Filepath.STATIC.value + Filepath.GAME_SHEDULES.value + Filepath.H1_FILENAME.value);
 		File file = new File("");
@@ -24,5 +25,11 @@ public class IcsFileHelper {
 		}
 
 		return file;
+	}
+	
+	/** .ics-File - parse data*/
+	public static String parseCalendarDataToList(File file) {
+		
+		return IcsDataMapping.getMappedIcsData(file);
 	}
 }

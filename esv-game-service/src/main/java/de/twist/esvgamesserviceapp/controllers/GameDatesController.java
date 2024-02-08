@@ -15,14 +15,16 @@ public class GameDatesController {
 
 	@GetMapping(value="/")
 	public String home() {
-		System.out.println("\n\nhome() - controller called!");
 		return "home";
 	}
 	
 	@GetMapping(value="/data")
 	public String getFileTest() {
-		File icsFile= IcsFileHelper.getIcsCalendarFile();
+		System.out.println("\n\ngetFileTest() - controller called!");
 		
+		File icsFile = IcsFileHelper.getIcsCalendarFile();
+		String returnValue = IcsFileHelper.parseCalendarDataToList(icsFile);
+		System.out.println("\n---------\nreturnValue: # " + returnValue);
 		return icsFile.getName().equals("") ? 
 				"getFileTest(): noFileFound" : "getFileTest(): " + icsFile.getName();
 	}
