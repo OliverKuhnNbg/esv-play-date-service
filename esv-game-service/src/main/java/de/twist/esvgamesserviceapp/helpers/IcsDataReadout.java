@@ -16,11 +16,11 @@ public class IcsDataReadout {
 	
 	public static String getMappedIcsData(File file) {
 		FileReader fileReader;
-		
+
 		try {
 			fileReader = new FileReader(file);
 			BufferedReader br = new BufferedReader(fileReader);
-			String currentLine = getReadoutDataFromFile(br);
+			List<CalendarGameEvent> allCalendarEvents = getReadoutDataFromFile(br);
 			br.close();
 			
 		} catch (FileNotFoundException e) {
@@ -28,11 +28,11 @@ public class IcsDataReadout {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return "oli";
 	}
 
-	private static String getReadoutDataFromFile(BufferedReader bufferedReader) throws IOException {
+	private static List<CalendarGameEvent> getReadoutDataFromFile(BufferedReader bufferedReader) throws IOException {
 		String currentLine = "";
 		boolean newEventSwitch = false;
 		CalendarGameEvent calGameEvent = new CalendarGameEvent();
@@ -57,7 +57,7 @@ public class IcsDataReadout {
 			DataStringHelper.objectDataOutput(calendarGameEvent);
 		}
 
-		return currentLine;
+		return allCalendarEventsList;
 	}
 
 	/** checks if current file line related to new event*/
