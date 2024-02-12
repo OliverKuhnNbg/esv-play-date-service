@@ -14,22 +14,22 @@ import de.twist.esvgamesserviceapp.models.CalendarGameEvent;
 
 public class IcsDataReadout {
 	
-	public static String getMappedIcsData(File file) {
+	public static List<CalendarGameEvent> getMappedIcsData(File file) {
 		FileReader fileReader;
+		List<CalendarGameEvent> allCalendarEvents = new ArrayList<>();
 
 		try {
 			fileReader = new FileReader(file);
 			BufferedReader br = new BufferedReader(fileReader);
-			List<CalendarGameEvent> allCalendarEvents = getReadoutDataFromFile(br);
+			allCalendarEvents = getReadoutDataFromFile(br);
 			br.close();
-			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		return "oli";
+		return allCalendarEvents;
 	}
 
 	private static List<CalendarGameEvent> getReadoutDataFromFile(BufferedReader bufferedReader) throws IOException {
@@ -38,7 +38,7 @@ public class IcsDataReadout {
 		CalendarGameEvent calGameEvent = new CalendarGameEvent();
 		List<CalendarGameEvent> allCalendarEventsList = new ArrayList<>();
 
-		for (int i = 0; (currentLine = bufferedReader.readLine()) != null; i++) {
+		while ((currentLine = bufferedReader.readLine()) != null) {
 			newEventSwitch = checkForNewEvent(newEventSwitch, currentLine);
 
 			if (currentLine.equals(IcsDefinitions.BEGIN_VEVENT.value)) {
@@ -50,11 +50,6 @@ public class IcsDataReadout {
 			else if (currentLine.equals(IcsDefinitions.END_VEVENT.value)) {
 				allCalendarEventsList.add(calGameEvent);
 			}
-		}
-
-//		TODO: return EventList fulleventList presentation - test output of list objects
-		for (CalendarGameEvent calendarGameEvent : allCalendarEventsList) {
-			DataStringHelper.objectDataOutput(calendarGameEvent);
 		}
 
 		return allCalendarEventsList;

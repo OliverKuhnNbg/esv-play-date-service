@@ -40,7 +40,6 @@ public class DataStringHelper {
 
 			calGameEvent.setLocation(location);
 		} else if(icsDefinition.equals(IcsDefinitions.UID.value)) {
-			List<String> locationDataList = StringFormatHelper.getLocationDataList(icsDefinitionData);
 			calGameEvent.setGameId(Long.parseLong(icsDefinitionData));
 		}
 
