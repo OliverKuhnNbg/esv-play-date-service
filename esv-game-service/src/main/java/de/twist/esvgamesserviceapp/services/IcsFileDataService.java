@@ -24,10 +24,9 @@ public class IcsFileDataService {
 		System.out.println("\n\n-----\ntst service call");
 		File icsFile = IcsFileHelper.getIcsCalendarFile(this.teamIndicator);
 		mappedDataList = IcsFileHelper.parseCalendarDataToList(icsFile);
-		
-		System.out.println("\n\ngetFileTest() - controller called!");
+
 		System.out.println("\n---------\nmapped amount of .ics-entrys: # " + mappedDataList.size());
-		
+
 		return mappedDataList;
 	}
 }
