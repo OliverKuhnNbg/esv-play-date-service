@@ -16,8 +16,8 @@ public class IcsFileHelper {
 	}
 
 	/** get .ics-File */
-	public static File getIcsCalendarFile() {
-		Resource resource = new ClassPathResource(Filepath.STATIC.value + Filepath.GAME_SHEDULES.value + Filepath.H1_FILENAME.value);
+	public static File getIcsCalendarFile(String team) {
+		Resource resource = new ClassPathResource(Filepath.STATIC.value + Filepath.GAME_SHEDULES.value + team);
 		File file = new File("");
 
 		try {

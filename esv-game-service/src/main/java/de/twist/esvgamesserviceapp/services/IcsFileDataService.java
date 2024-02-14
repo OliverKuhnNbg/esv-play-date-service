@@ -12,10 +12,17 @@ import de.twist.esvgamesserviceapp.models.CalendarGameEvent;
 public class IcsFileDataService {
 	
 	private List<CalendarGameEvent> mappedDataList;
+	private String teamIndicator = "";
+
+	public IcsFileDataService() {
+	}
+	public IcsFileDataService(String teamIndicator) {
+		this.teamIndicator = teamIndicator;
+	}
 
 	public List<CalendarGameEvent> getFileData() {
 		System.out.println("\n\n-----\ntst service call");
-		File icsFile = IcsFileHelper.getIcsCalendarFile();
+		File icsFile = IcsFileHelper.getIcsCalendarFile(this.teamIndicator);
 		mappedDataList = IcsFileHelper.parseCalendarDataToList(icsFile);
 		
 		System.out.println("\n\ngetFileTest() - controller called!");

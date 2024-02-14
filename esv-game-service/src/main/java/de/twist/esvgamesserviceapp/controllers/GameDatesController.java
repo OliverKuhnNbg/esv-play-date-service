@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import de.twist.esvgamesserviceapp.constants.Filepath;
 import de.twist.esvgamesserviceapp.helpers.IcsFileHelper;
 import de.twist.esvgamesserviceapp.services.IcsFileDataService;
 
@@ -25,9 +26,9 @@ public class GameDatesController {
 	
 	@GetMapping(value="/data")
 	public String getFileTest() {
-		File icsFile = IcsFileHelper.getIcsCalendarFile();
-		dataservice.getFileData();
-
+		new IcsFileDataService(Filepath.H1_FILENAME.value).getFileData();
+		
+		File icsFile = IcsFileHelper.getIcsCalendarFile(Filepath.H1_FILENAME.value);
 		return icsFile.getName().equals("") ? 
 				"getFileTest(): noFileFound" : "getFileTest(): " + icsFile.getName();
 	}
