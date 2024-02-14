@@ -23,7 +23,7 @@ public class GameDatesController {
 	public String home() {
 		return "home";
 	}
-	
+
 	@GetMapping(value="/data")
 	public String getFileTest() {
 		System.out.println("\n\ngetFileTest() - controller called!");
