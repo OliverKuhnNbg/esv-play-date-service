@@ -23,12 +23,15 @@ public class DataStringHelper {
 			calGameEvent.setLastDataUpdate(date);
 		} else if(icsDefinition.equals(IcsDefinitions.DTSTART.value)) {
 			date = StringDateHelper.getDateFromString(icsDefinitionData);
+			boolean isGamePlayed = date.before(new Date());
+
 			calGameEvent.setStartGameDate(date);
+			calGameEvent.setGamePlayed(isGamePlayed);
 		} else if(icsDefinition.equals(IcsDefinitions.DTEND.value)) {
 			date = StringDateHelper.getDateFromString(icsDefinitionData);
 			calGameEvent.setEndGameDate(date);
 		} else if(icsDefinition.equals(IcsDefinitions.SUMMARY.value)) {
-			List<String> teamsList= StringFormatHelper.getHomeAndGuestTeamList(icsDefinitionData);
+			List<String> teamsList = StringFormatHelper.getHomeAndGuestTeamList(icsDefinitionData);
 			calGameEvent.setHomeTeam(teamsList.getFirst());
 			calGameEvent.setGuestTeam(teamsList.getLast());
 		} else if(icsDefinition.equals(IcsDefinitions.LOCATION.value)) {
@@ -45,7 +48,7 @@ public class DataStringHelper {
 
 		return calGameEvent;
 	}
-	
+
 	public static void objectDataOutput(CalendarGameEvent calGameEvent) {
 		System.out.println("\n----------------------------------------------------");
 		System.out.println(calGameEvent.getGameId());

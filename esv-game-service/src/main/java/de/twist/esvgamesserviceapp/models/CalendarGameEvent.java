@@ -11,7 +11,7 @@ public class CalendarGameEvent {
 	private Date lastDataUpdate;
 	private Date startGameDate;
 	private Date endGameDate;
-	private boolean done;
+	private boolean gamePlayed;
 
 	private String homeTeam;
 	private String guestTeam;
@@ -31,8 +31,8 @@ public class CalendarGameEvent {
 	public Date getEndGameDate() {
 		return endGameDate;
 	}
-	public boolean isDone() {
-		return done;
+	public boolean isGamePlayed() {
+		return gamePlayed;
 	}
 	public String getHomeTeam() {
 		return homeTeam;
@@ -57,8 +57,8 @@ public class CalendarGameEvent {
 	public void setEndGameDate(Date endGameDate) {
 		this.endGameDate = endGameDate;
 	}
-	public void setDone(boolean done) {
-		this.done = done;
+	public void setGamePlayed(boolean gamePlayed) {
+		this.gamePlayed = gamePlayed;
 	}
 	public void setHomeTeam(String homeTeam) {
 		this.homeTeam = homeTeam;
